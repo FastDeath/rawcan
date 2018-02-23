@@ -1,5 +1,7 @@
 # rawcan
-[![Build Status](https://travis-ci.org/jjkr/rawcan.svg?branch=master)](https://travis-ci.org/jjkr/rawcan)
+[![Build Status](https://travis-ci.org/FastDeath/rawcan.svg?branch=master)](https://travis-ci.org/FastDeath/rawcan)
+
+* Modifications in progress *
 
 Lightweight asynchronous Node.js bindings for SocketCAN. SocketCAN is a socket based implementation of the CAN bus protocol for the Linux kernel, developed primarily by VW.
 
