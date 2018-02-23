@@ -9,5 +9,5 @@
     "removeComments": true,
     "preserveConstEnums": true
   },
-  "files": [ "rawcan.ts" ]
+  "files": [ "rawcan.ts", "isotp.ts" ]
 }
