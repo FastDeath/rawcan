@@ -1,6 +1,8 @@
 # rawcan
 [![Build Status](https://travis-ci.org/FastDeath/rawcan.svg?branch=master)](https://travis-ci.org/FastDeath/rawcan)
 
+Requires the [can-isotp](https://github.com/hartkopp/can-isotp) kernel module to be installed for ISO 15765-2 Transport Protocol support.
+
 *Modifications in progress*
 
 Lightweight asynchronous Node.js bindings for SocketCAN. SocketCAN is a socket based implementation of the CAN bus protocol for the Linux kernel, developed primarily by VW.
@@ -21,7 +23,9 @@ socket.send(can.EFF_FLAG | 0x23c89f, 'hello');
 Installing
 ----------
 
-This package is published to npm, so installing is as simple as:
+Follow the steps outlined in [README.isotp](https://github.com/hartkopp/can-isotp/blob/master/README.isotp) to build and install  the [can-isotp](https://github.com/hartkopp/can-isotp) kernel module.
+
+~This package is published to npm, so installing is as simple as:~ *Not this version yet, unfortunately*
 
 ```
 $ npm install rawcan
