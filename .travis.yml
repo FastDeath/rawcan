@@ -21,7 +21,7 @@ node_js:
   - "0.12"
   - "0.10"
 before_install:
-  - wget -O "/usr/include/linux/can/isotp.h" "https://raw.githubusercontent.com/hartkopp/can-isotp/master/include/uapi/linux/can/isotp.h"
+  - sudo wget -O "/usr/include/linux/can/isotp.h" "https://raw.githubusercontent.com/hartkopp/can-isotp/master/include/uapi/linux/can/isotp.h"
   - sudo modprobe vcan
   - sudo ip link add type vcan
   - sudo ip link set up vcan0
