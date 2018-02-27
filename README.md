@@ -7,10 +7,12 @@ Requires the [can-isotp](https://github.com/hartkopp/can-isotp) kernel module to
 
 Lightweight asynchronous Node.js bindings for SocketCAN. SocketCAN is a socket based implementation of the CAN bus protocol for the Linux kernel, developed primarily by VW.
 
+### Raw CAN-Bus frames
+
 ```javascript
 import * as can from 'rawcan';
 
-const socket = can.createSocket('vcan0');
+const socket = can.createSocket('vcan0', can.CAN_RAW);
 
 socket.on('error', err => { console.log('socket error: ' + err); });
 socket.on('message', (id, buffer) => {
@@ -18,6 +20,19 @@ socket.on('message', (id, buffer) => {
 });
 
 socket.send(can.EFF_FLAG | 0x23c89f, 'hello');
+```
+
+### ISO 15765-2 Transport Protocol
+
+```javascript
+const socket = can.createSocket('vcan0', can.CAN_ISOTP, 0x7df, 0x7e8);
+
+socket.on('error', err => { console.log('socket error: ' + err); });
+socket.on('message', (buffer) => {
+  console.log('received datagram', buffer.toString('hex'));
+});
+
+socket.send('Hello ISO-15765-2 world!');
 ```
 
 Installing
