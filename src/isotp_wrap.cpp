@@ -37,7 +37,6 @@ NAN_MODULE_INIT(ISOTPWrap::Initialize)
     SetPrototypeMethod(tpl, "bind", Bind);
     SetPrototypeMethod(tpl, "send", Send);
     SetPrototypeMethod(tpl, "close", Close);
-    SetPrototypeMethod(tpl, "setFilter", SetFilter);
     SetPrototypeMethod(tpl, "onSent", OnSent);
     SetPrototypeMethod(tpl, "onMessage", OnMessage);
     SetPrototypeMethod(tpl, "onError", OnError);
@@ -104,7 +103,6 @@ NAN_METHOD(ISOTPWrap::Bind)
         auto canAddr = sockaddr_can();
         canAddr.can_family = AF_CAN;
         canAddr.can_ifindex = ifr.ifr_ifindex;
-
         canAddr.can_addr.tp.tx_id = tx_id;
         canAddr.can_addr.tp.rx_id = rx_id;
 
@@ -122,9 +120,7 @@ NAN_METHOD(ISOTPWrap::Bind)
 
 NAN_METHOD(ISOTPWrap::Send)
 {
-    // send(id, buffer)
     assert(1 == info.Length());
-    // assert(info[0]->IsUint32());
     assert(node::Buffer::HasInstance(info[0]));
 
     auto* self = ObjectWrap::Unwrap<ISOTPWrap>(info.Holder());
@@ -132,8 +128,6 @@ NAN_METHOD(ISOTPWrap::Send)
     assert(!self->m_closed);
 
     auto& sendBuffer = self->m_sendBuffer;
-    // auto id = Nan::To<uint32_t>(info[0]).FromJust();
-    // sendBuffer.can_id = id;
 
     auto length = node::Buffer::Length(info[0]);
     sendBuffer.length = length;
@@ -149,25 +143,6 @@ NAN_METHOD(ISOTPWrap::Close)
     assert(self);
 
     self->doClose();
-}
-
-NAN_METHOD(ISOTPWrap::SetFilter)
-{
-    // setFilter(filter, mask)
-    assert(2 == info.Length());
-    assert(info[0]->IsUint32());
-    assert(info[1]->IsUint32());
-
-    // auto filter = Nan::To<uint32_t>(info[0]).FromJust();
-    // auto mask = Nan::To<uint32_t>(info[1]).FromJust();
-
-    // auto* self = ObjectWrap::Unwrap<ISOTPWrap>(info.Holder());
-    // assert(self);
-
-    // struct can_filter cf[1];
-    // cf[0].can_id = filter;
-    // cf[0].can_mask = mask;
-    // setsockopt(self->m_socket, SOL_CAN_RAW, CAN_RAW_FILTER, &cf, sizeof(cf));
 }
 
 NAN_METHOD(ISOTPWrap::OnSent)

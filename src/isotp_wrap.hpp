@@ -27,7 +27,6 @@ private:
     static NAN_METHOD(Bind);
     static NAN_METHOD(Send);
     static NAN_METHOD(Close);
-    static NAN_METHOD(SetFilter);
     static NAN_METHOD(OnSent);
     static NAN_METHOD(OnMessage);
     static NAN_METHOD(OnError);
