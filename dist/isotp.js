@@ -30,7 +30,6 @@ var IsoTpSocket = (function (_super) {
         if (err != 0) {
             throw new Error('Failed to bind: ' + err);
         }
-        console.log("bindoo");
         this._bound = true;
         return this;
     };
@@ -61,7 +60,6 @@ var IsoTpSocket = (function (_super) {
         this._handle.unref();
     };
     IsoTpSocket.prototype._onSent = function (err) {
-        console.log("onSent", err);
         var sent = this._sendQueue[0];
         if (sent.callback) {
             sent.callback(err);

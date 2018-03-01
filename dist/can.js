@@ -65,7 +65,6 @@ var CanSocket = (function (_super) {
         this._handle.unref();
     };
     CanSocket.prototype._onSent = function (err) {
-        console.log("onSent", err);
         var sent = this._sendQueue[0];
         if (sent.callback) {
             sent.callback(err);

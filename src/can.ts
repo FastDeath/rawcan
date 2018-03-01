@@ -84,8 +84,6 @@ export class CanSocket extends EventEmitter {
   }
 
   _onSent(err: number): void {
-    console.log("onSent", err);
-    
     const sent = this._sendQueue[0];
     if (sent.callback) {
       sent.callback(err);
