@@ -38,7 +38,6 @@ export class IsoTpSocket extends EventEmitter {
     if (err != 0) {
       throw new Error('Failed to bind: ' + err);
     }
-    console.log("bindoo");
 
     this._bound = true;
     return this;
@@ -77,7 +76,6 @@ export class IsoTpSocket extends EventEmitter {
   }
 
   _onSent(err: number): void {
-    console.log("onSent", err);
     const sent = this._sendQueue[0];
     if (sent.callback) {
       sent.callback(err);
